@@ -1,0 +1,20 @@
+{
+  "name": "pramanadwijaya-admin",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Admin CMS for blog articles on pramanadwijaya.com",
+  "scripts": {
+    "dev": "node server/index.js",
+    "start": "node server/index.js",
+    "import-articles": "node server/scripts/import-articles.js"
+  },
+  "engines": {
+    "node": ">=16"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "jimp": "^0.22.12",
+    "multer": "^1.4.5-lts.1"
+  }
+}

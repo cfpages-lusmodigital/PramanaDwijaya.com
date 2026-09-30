@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PRAMANA Studio · pramanadwijaya.com</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.snow.css" rel="stylesheet">
+  <link rel="stylesheet" href="/admin/styles.css">
+</head>
+<body>
+  <section id="login-screen" class="auth">
+    <div class="auth-card">
+      <div class="auth-mark">
+        <img src="/wp-content/uploads/2016/05/atap-baja-ringan.jpg" alt="">
+        PRAMANA Studio · Dwijaya
+      </div>
+      <h1>Welcome back</h1>
+      <p>Publish artikel baru tanpa mengubah arsip yang sudah live.</p>
+      <form id="login-form">
+        <div id="login-error" class="toast toast-error hidden"></div>
+        <label class="field">
+          <span>Username</span>
+          <input id="username" autocomplete="username" placeholder="admin" required>
+        </label>
+        <label class="field">
+          <span>Password</span>
+          <input id="password" type="password" autocomplete="current-password" placeholder="••••••••" required>
+        </label>
+        <button class="btn btn-solid" type="submit">Continue</button>
+      </form>
+    </div>
+  </section>
+
+  <div id="app-shell" class="app hidden">
+    <aside class="sidebar">
+      <div class="sidebar-brand">
+        <img src="/wp-content/uploads/2016/05/atap-baja-ringan.jpg" alt="Pramana Dwijaya">
+        <span>PRAMANA Studio</span>
+      </div>
+      <nav class="sidebar-nav">
+        <button type="button" class="nav-item is-active" data-view="dashboard">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 10.5 12 4l8 6.5V20a1 1 0 0 1-1 1h-5v-6H10v6H5a1 1 0 0 1-1-1v-9.5z"/></svg>
+          <span>Beranda</span>
+        </button>
+        <button type="button" class="nav-item" data-view="articles">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4h10a2 2 0 0 1 2 2v14l-7-3-7 3V6a2 2 0 0 1 2-2z"/></svg>
+          <span>Artikel Blog</span>
+          <span class="nav-badge" id="nav-article-count">0</span>
+        </button>
+      </nav>
+    </aside>
+
+    <div class="stage">
+      <header class="bar">
+        <div class="search">
+          <svg viewBox="0 0 24 24"><path d="M10.5 4a6.5 6.5 0 1 1 0 13 6.5 6.5 0 0 1 0-13zm8.3 13.2-2.6-2.6 1.4-1.4 2.6 2.6z"/></svg>
+          <input id="global-search" type="search" placeholder="Search articles...">
+        </div>
+        <div class="bar-right">
+          <a class="icon-btn" href="/blog/" target="_blank" rel="noreferrer" title="Open /blog/">↗</a>
+          <button id="logout-btn" class="btn btn-ghost btn-sm" type="button">Keluar</button>
+          <button id="new-article-top-btn" class="btn btn-solid btn-sm" type="button">Artikel baru</button>
+        </div>
+      </header>
+
+      <main class="canvas">
+        <div id="alert-box" class="toast hidden"></div>
+
+        <section id="dashboard-view">
+          <div class="page-head">
+            <div>
+              <p class="kicker">Beranda</p>
+              <h1>Ringkasan konten</h1>
+              <p class="lede">Artikel baru tampil di /blog/. Arsip lama tetap utuh.</p>
+            </div>
+          </div>
+          <div class="kpi-row">
+            <article class="kpi">
+              <div class="kpi-icon">▦</div>
+              <div>
+                <p class="kpi-label">Total in CMS</p>
+                <h2 id="stat-total">0</h2>
+                <p class="kpi-hint">Tracked in this workspace</p>
+              </div>
+            </article>
+            <article class="kpi">
+              <div class="kpi-icon kpi-icon-teal">↗</div>
+              <div>
+                <p class="kpi-label">Published new</p>
+                <h2 id="stat-managed">0</h2>
+                <p class="kpi-hint">Live on /blog/</p>
+              </div>
+            </article>
+            <article class="kpi">
+              <div class="kpi-icon kpi-icon-gray">◎</div>
+              <div>
+                <p class="kpi-label">Imported refs</p>
+                <h2 id="stat-imported">0</h2>
+                <p class="kpi-hint">Artikel lama dari /blog/</p>
+              </div>
+            </article>
+          </div>
+          <div class="split">
+            <article class="card">
+              <div class="card-head">
+                <h3>Publishing flow</h3>
+                <span class="chip">3 steps</span>
+              </div>
+              <ol class="steps">
+                <li><b>Draft</b><span>Tulis di editor visual, unggah gambar, atur slug.</span></li>
+                <li><b>Generate</b><span>Sistem menulis file HTML statis di root project.</span></li>
+                <li><b>Appear</b><span>Kartu baru masuk paling atas di halaman /blog/.</span></li>
+              </ol>
+            </article>
+            <article class="card">
+              <div class="card-head"><h3>Safeguards</h3></div>
+              <ul class="guard">
+                <li>WordPress HTML lama tidak di-overwrite.</li>
+                <li>Delete menghapus file HTML dari server.</li>
+                <li>Upload gambar ke wp-content/uploads, max 500KB.</li>
+                <li>Backup listing tetap ada di /blog/managed/.</li>
+              </ul>
+            </article>
+          </div>
+        </section>
+
+        <section id="articles-view" class="hidden">
+          <div class="page-head">
+            <div>
+              <p class="kicker">Artikel Blog</p>
+              <h1>Daftar artikel</h1>
+              <p class="lede">Artikel baru dari CMS tampil paling atas di /blog/.</p>
+            </div>
+            <button id="new-article-btn" class="btn btn-solid" type="button">New article</button>
+          </div>
+          <article class="card table-card">
+            <div class="table-tools">
+              <div class="search search-sm">
+                <svg viewBox="0 0 24 24"><path d="M10.5 4a6.5 6.5 0 1 1 0 13 6.5 6.5 0 0 1 0-13z"/></svg>
+                <input id="search-input" type="search" placeholder="Filter by title or slug">
+              </div>
+              <button id="refresh-btn" class="btn btn-ghost" type="button">Refresh</button>
+            </div>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Article</th>
+                    <th>Path</th>
+                    <th>Status</th>
+                    <th>Published</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody id="articles-table-body"></tbody>
+              </table>
+            </div>
+            <div id="articles-empty" class="empty hidden">
+              <h3>No new articles yet</h3>
+              <p>Publish the first one. Existing WordPress posts stay as they are.</p>
+              <button class="btn btn-solid" type="button" data-open-editor>Create article</button>
+            </div>
+          </article>
+        </section>
+
+        <section id="product-articles-view" class="hidden" hidden aria-hidden="true">
+          <div class="page-head">
+            <div>
+              <p class="kicker">Artikel Produk</p>
+              <h1>Daftar artikel produk</h1>
+              <p class="lede" id="product-sync-hint">Artikel jual per wilayah, dikelompokkan sesuai menu Produk Kami.</p>
+            </div>
+            <div class="page-head-actions">
+              <button id="new-product-article-btn" class="btn btn-solid" type="button">Artikel baru</button>
+              <button id="import-product-btn" class="btn btn-ghost" type="button">Sinkronkan</button>
+            </div>
+          </div>
+          <div class="product-layout">
+            <aside class="product-sidebar card">
+              <div class="product-sidebar-head">
+                <h3>Kategori</h3>
+                <button id="product-clear-filter" class="btn btn-ghost btn-sm" type="button">Semua</button>
+              </div>
+              <div id="product-category-nav" class="product-category-nav"></div>
+            </aside>
+            <article class="card table-card product-table-card">
+              <div class="table-tools">
+                <div class="search search-sm">
+                  <svg viewBox="0 0 24 24"><path d="M10.5 4a6.5 6.5 0 1 1 0 13 6.5 6.5 0 0 1 0-13z"/></svg>
+                  <input id="product-search-input" type="search" placeholder="Filter judul atau slug">
+                </div>
+                <span id="product-result-count" class="hint"></span>
+                <button id="product-refresh-btn" class="btn btn-ghost" type="button">Refresh</button>
+              </div>
+              <div class="table-wrap">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Article</th>
+                      <th>Kategori</th>
+                      <th>Status</th>
+                      <th>Jadwal</th>
+                      <th>Path</th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tbody id="product-table-body"></tbody>
+                </table>
+              </div>
+              <div id="product-empty" class="empty hidden">
+                <h3>Belum ada artikel produk</h3>
+                <p>Klik Sinkronkan artikel untuk mengindeks semua halaman jual-*.html dari kategori produk.</p>
+                <button class="btn btn-solid" type="button" id="product-empty-import">Sinkronkan sekarang</button>
+              </div>
+              <div class="table-pagination">
+                <button id="product-prev-page" class="btn btn-ghost btn-sm" type="button">Sebelumnya</button>
+                <span id="product-page-label" class="hint"></span>
+                <button id="product-next-page" class="btn btn-ghost btn-sm" type="button">Berikutnya</button>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section id="editor-view" class="hidden">
+          <div class="page-head">
+            <div>
+              <p class="kicker">Composer</p>
+              <h1 id="editor-title">New article</h1>
+              <p class="lede" id="editor-lede">Setelah simpan, halaman langsung masuk ke /blog/.</p>
+            </div>
+          </div>
+          <form id="article-form" class="composer">
+            <input id="original-slug" type="hidden">
+            <div class="card">
+              <label class="field">
+                <span>Title</span>
+                <input id="title" class="title-input" placeholder="How to choose SNI steel for construction" required>
+              </label>
+              <div class="field">
+                <span>Body</span>
+                <p class="hint">Tombol YouTube di toolbar, tempel link (watch / Shorts / youtu.be), atau satu baris hanya URL — otomatis jadi embed.</p>
+                <div id="quill-editor"></div>
+                <textarea id="content" class="hidden" required></textarea>
+              </div>
+              <label class="field">
+                <span>Excerpt</span>
+                <textarea id="excerpt" rows="3" placeholder="One or two sentences for the listing card."></textarea>
+              </label>
+            </div>
+            <aside class="composer-side">
+              <div class="card">
+                <h3>Publish</h3>
+                <label class="field">
+                  <span>Schedule</span>
+                  <input id="publishedAt" type="datetime-local">
+                  <small class="hint">Artikel edukasi &amp; produk baru tayang otomatis setelah tanggal/jam ini (listing + URL). Preview sebelum waktunya akan 404.</small>
+                </label>
+                <div class="stack">
+                  <button class="btn btn-solid" type="submit">Save & publish</button>
+                  <button id="preview-btn" class="btn btn-ghost" type="button">Preview page</button>
+                  <button id="cancel-edit-btn" class="btn btn-ghost" type="button">Cancel</button>
+                </div>
+              </div>
+              <div class="card">
+                <h3>Details</h3>
+                <label class="field" id="slug-field">
+                  <span>Slug</span>
+                  <input id="slug" placeholder="jual-pagar-brc-kota-baru">
+                  <small id="slug-preview">/slug.html</small>
+                </label>
+                <label class="field" id="category-field">
+                  <span>Category</span>
+                  <input id="category" value="blog">
+                </label>
+                <label class="field hidden" id="product-category-field">
+                  <span>Kategori produk</span>
+                  <select id="product-category"></select>
+                </label>
+                <label class="field">
+                  <span>Author</span>
+                  <input id="author" value="admin">
+                </label>
+              </div>
+              <div class="card">
+                <h3>Cover image</h3>
+                <input id="featured-upload" type="file" accept="image/*" hidden>
+                <button id="featured-upload-btn" class="btn btn-ghost" type="button">Upload image</button>
+                <p class="hint">Disimpan ke wp-content/uploads · dikompres ±500KB</p>
+                <div id="upload-status" class="hint hidden"></div>
+                <label class="field">
+                  <span>Path</span>
+                  <input id="featuredImage" placeholder="/wp-content/uploads/...">
+                </label>
+                <div id="featured-preview" class="cover hidden">
+                  <img id="featured-preview-img" alt="">
+                </div>
+              </div>
+            </aside>
+          </form>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <script src="/admin/site-config.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.js"></script>
+  <script src="/admin/app.js"></script>
+</body>
+</html>

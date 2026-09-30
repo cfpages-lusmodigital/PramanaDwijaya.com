@@ -1,0 +1,16 @@
+{
+  "version": 1,
+  "include": [
+    "/data/*",
+    "/server/*",
+    "/templates/*",
+    "/functions/*",
+    "/node_modules/*",
+    "/.github/*",
+    "/.env*",
+    "/package.json",
+    "/package-lock.json",
+    "/README-ADMIN.md"
+  ],
+  "exclude": []
+}
