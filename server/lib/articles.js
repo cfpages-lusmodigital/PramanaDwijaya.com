@@ -5,7 +5,6 @@ const { generateArticleHtml, generateListingHtml } = require('./generator');
 const { syncBlogListingPage } = require('./blog-listing-sync');
 const { articleHtmlPath, MANAGED_LISTING_DIR, MANAGED_LISTING_FILE, site } = require('./paths');
 const { slugify, stripHtml, truncate, toIsoDate } = require('./utils');
-const { filterPublished, isPublished } = require('./publish');
 const { notifyPublishScheduleChanged } = require('./schedule');
 
 function createId() {
@@ -70,18 +69,14 @@ function isAdminManaged(article) {
 
 async function syncArticleFiles(articles) {
   for (const article of articles.filter(isAdminManaged)) {
-    if (isPublished(article)) {
-      await writeArticleFile(article);
-    } else {
-      await removeArticleFile(article.slug);
-    }
+    await writeArticleFile(article);
   }
 }
 
 async function rebuildListing() {
   const articles = await readArticles();
   await syncArticleFiles(articles);
-  const visible = filterPublished(articles.filter(isAdminManaged));
+  const visible = articles.filter(isAdminManaged);
   const html = generateListingHtml(visible);
   await fs.mkdir(MANAGED_LISTING_DIR, { recursive: true });
   await fs.writeFile(MANAGED_LISTING_FILE, html, 'utf8');

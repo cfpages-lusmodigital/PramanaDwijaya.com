@@ -36,6 +36,9 @@ function generateArticleHtml(article) {
     featuredImageBlock: buildFeaturedImageBlock(article),
     content: article.content,
     updatedAt: escapeHtml(formatDate(article.updatedAt)),
+    publishMeta: article.publishedAt
+      ? `<meta name="pb-publish" content="${escapeHtml(article.publishedAt)}">\n<script src="/admin/publish-schedule.js" defer></script>`
+      : '',
   });
 }
 
@@ -48,7 +51,7 @@ function generateListingHtml(articles) {
         ? `<img loading="lazy" decoding="async" src="${escapeHtml(article.featuredImage)}" alt="${escapeHtml(article.title)}" width="768" height="768">`
         : '';
       return `
-        <article class="managed-card">
+        <article class="managed-card" data-pb-publish="${escapeHtml(article.publishedAt || '')}">
           <a href="${href}" class="managed-card__image">${image}</a>
           <div class="managed-card__body">
             <p class="managed-card__meta">${escapeHtml(formatDate(article.publishedAt))}</p>

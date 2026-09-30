@@ -9,7 +9,7 @@ async function main() {
   const outOfSync = articles.filter((item) => isPublished(item) !== fs.existsSync(articleHtmlPath(item.slug)));
 
   if (outOfSync.length === 0) {
-    console.log('Tidak ada artikel yang jatuh tempo.');
+    console.log('Artikel terjadwal sudah ada di HTML. Tayang otomatis di browser saat waktunya, tanpa push kedua.');
     return;
   }
 

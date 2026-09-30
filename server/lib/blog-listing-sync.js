@@ -1,14 +1,14 @@
 const fs = require('fs/promises');
 const { LISTING_PAGE_FILE, site } = require('./paths');
 const { escapeHtml } = require('./utils');
-const { isPublished } = require('./publish');
+const { publishAttr, ensureScheduleScript, ensureArticleSchedule } = require('./static-schedule');
 
 const START_MARKER = '<!-- PB_ADMIN_ARTICLES_START -->';
 const END_MARKER = '<!-- PB_ADMIN_ARTICLES_END -->';
 const SCRIPT_MARKER = '<!-- PB_ADMIN_ARTICLES_SCRIPT -->';
 
 function isAdminArticle(article) {
-  return article && article.source !== 'imported' && article.slug && article.title && isPublished(article);
+  return article && article.source !== 'imported' && article.slug && article.title;
 }
 
 function generateBlogListItem(article) {
@@ -21,7 +21,7 @@ function generateBlogListItem(article) {
     : escapeHtml(site.defaultFeaturedImage);
 
   return `
-<article id="post-pb-${slug}" class="post type-post status-publish format-standard hentry pb-admin-article" data-pb-admin="true">
+<article id="post-pb-${slug}" class="post type-post status-publish format-standard hentry pb-admin-article" data-pb-admin="true"${publishAttr(article)}>
 \t<header class="entry-header">
 \t\t<h2 class="entry-title"><a href="${href}" rel="bookmark">${title}</a></h2>
 \t</header>
@@ -101,6 +101,10 @@ async function syncBlogListingPage(articles) {
 
   html = ensureInjectScript(replaced);
   await fs.writeFile(LISTING_PAGE_FILE, html, 'utf8');
+  await ensureScheduleScript(LISTING_PAGE_FILE);
+  for (const article of adminArticles) {
+    await ensureArticleSchedule(article.slug, article.publishedAt);
+  }
 }
 
 module.exports = {

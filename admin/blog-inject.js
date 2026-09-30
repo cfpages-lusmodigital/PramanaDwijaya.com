@@ -9,6 +9,7 @@
     const wrap = document.createElement('article');
     wrap.className = 'post type-post status-publish format-standard hentry pb-admin-article';
     wrap.setAttribute('data-pb-admin', 'true');
+    if (article.publishedAt) wrap.setAttribute('data-pb-publish', article.publishedAt);
     wrap.id = `post-pb-${article.slug}`;
     wrap.innerHTML = `
       <header class="entry-header">

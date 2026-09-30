@@ -1,16 +1,16 @@
 {
   "articles": [
     {
-      "id": "fe15f960-3c2b-4df6-a3c6-15a835b70e78",
-      "slug": "test-schedule-artikel",
+      "id": "47fd9949-6bb2-43bf-801b-5f6eb8869a78",
+      "slug": "test-schedule-1030",
       "title": "Test Schedule Artikel",
-      "excerpt": "What is Lorem Ipsum? Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since 1966, when designers at Letraset and James Mosley, the l…",
-      "content": "<h2><span style=\"color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);\">What is Lorem Ipsum?</span></h2><p class=\"ql-align-justify\"><strong style=\"color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);\">Lorem Ipsum</strong><span style=\"color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);\"> is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since 1966, when designers at Letraset and James Mosley, the librarian at St Bride Printing Library in London, took a 1914 Cicero translation and scrambled it to make dummy text for Letraset's Body Type sheets. It has survived not only many decades, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised thanks to these sheets and more recently with desktop publishing software like Aldus PageMaker and Microsoft Word including versions of Lorem Ipsum.</span></p><img src=\"/wp-content/uploads/2026/09/dummy-office-munh6l1l.jpg\"><p><br></p>",
+      "excerpt": "Artikel uji jadwal untuk pukul 10.30 WIB.",
+      "content": "<p>Artikel uji jadwal. Seharusnya baru tampil pada 30 September 2026 pukul 10.30 WIB.</p>",
       "featuredImage": "/wp-content/uploads/2026/09/dummy-deposito-munh6wkc.jpg",
       "category": "blog",
       "author": "admin",
-      "publishedAt": "2026-09-30T02:23:00.000Z",
-      "updatedAt": "2026-09-30T02:19:13.765Z",
+      "publishedAt": "2026-09-30T03:30:00.000Z",
+      "updatedAt": "2026-09-30T02:34:33.389Z",
       "managed": true,
       "source": "admin"
     },

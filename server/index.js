@@ -14,7 +14,6 @@ const { createAuthMiddleware } = require('./lib/auth');
 const { saveUploadedImage } = require('./lib/upload');
 const { importLegacyArticles } = require('./lib/import-legacy');
 const { ROOT, ADMIN_DIR, site } = require('./lib/paths');
-const { isPublished } = require('./lib/publish');
 const {
   initScheduleWatcher,
   createPublishGuardMiddleware,
@@ -36,7 +35,7 @@ function sendPublicArticles(_req, res) {
     .then((articles) => {
       res.json({
         articles: articles
-          .filter((article) => article.source !== 'imported' && isPublished(article))
+          .filter((article) => article.source !== 'imported')
           .map((article) => ({
             slug: article.slug,
             title: article.title,
