@@ -3,7 +3,7 @@ const path = require('path');
 const { ROOT } = require('./paths');
 const { escapeHtml } = require('./utils');
 
-const SCRIPT_TAG = '<script src="/admin/publish-schedule.js" defer></script>';
+const SCRIPT_TAG = '<script src="/admin/publish-schedule.js?v=2" defer></script>';
 const STYLE_TAG = '<style id="pb-schedule-css">[data-pb-publish]:not([data-pb-live]){display:none!important}</style>';
 
 function publishAttr(article) {

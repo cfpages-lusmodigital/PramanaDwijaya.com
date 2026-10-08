@@ -37,7 +37,7 @@ function generateArticleHtml(article) {
     content: article.content,
     updatedAt: escapeHtml(formatDate(article.updatedAt)),
     publishMeta: article.publishedAt
-      ? `<meta name="pb-publish" content="${escapeHtml(article.publishedAt)}">\n<script src="/admin/publish-schedule.js" defer></script>`
+      ? `<meta name="pb-publish" content="${escapeHtml(article.publishedAt)}">\n<script src="/admin/publish-schedule.js?v=2" defer></script>`
       : '',
   });
 }
