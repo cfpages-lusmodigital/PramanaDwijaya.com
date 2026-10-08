@@ -9,7 +9,11 @@
     const wrap = document.createElement('article');
     wrap.className = 'post type-post status-publish format-standard hentry pb-admin-article';
     wrap.setAttribute('data-pb-admin', 'true');
-    if (article.publishedAt) wrap.setAttribute('data-pb-publish', article.publishedAt);
+    if (article.publishedAt) {
+      wrap.setAttribute('data-pb-publish', article.publishedAt);
+      const when = new Date(article.publishedAt).getTime();
+      if (Number.isNaN(when) || when <= Date.now()) wrap.setAttribute('data-pb-live', '');
+    }
     wrap.id = `post-pb-${article.slug}`;
     wrap.innerHTML = `
       <header class="entry-header">
@@ -31,6 +35,7 @@
       container = document.querySelector(FALLBACK_SELECTOR);
     }
     if (!container) return;
+    if (container.querySelector('[data-pb-admin="true"]')) return;
 
     const response = await fetch('/api/public/articles');
     if (!response.ok) return;
@@ -41,8 +46,6 @@
 
     const fragment = document.createDocumentFragment();
     articles
-      .slice()
-      .reverse()
       .forEach((article) => {
         fragment.appendChild(card(article));
       });
