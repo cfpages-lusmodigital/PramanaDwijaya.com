@@ -11,7 +11,6 @@ const {
   rebuildListing,
 } = require('./lib/articles');
 const { createAuthMiddleware } = require('./lib/auth');
-const { filterPublished } = require('./lib/publish');
 const { saveUploadedImage } = require('./lib/upload');
 const { importLegacyArticles } = require('./lib/import-legacy');
 const { ROOT, ADMIN_DIR, site } = require('./lib/paths');
@@ -35,7 +34,7 @@ function sendPublicArticles(_req, res) {
   return listArticles()
     .then((articles) => {
       res.json({
-        articles: filterPublished(articles)
+        articles: articles
           .filter((article) => article.source !== 'imported')
           .map((article) => ({
             slug: article.slug,

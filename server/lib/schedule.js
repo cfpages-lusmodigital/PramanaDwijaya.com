@@ -104,12 +104,6 @@ function planNextWake() {
 
   const delay = Math.min(nextAt - now + 750, 2_147_483_647);
   wakeTimer = setTimeout(async () => {
-    try {
-      const { rebuildListing } = require('./articles');
-      await rebuildListing();
-    } catch (error) {
-      console.warn('Penjadwalan: rebuild listing gagal:', error.message);
-    }
     await refreshPublishIndex();
     planNextWake();
   }, delay);

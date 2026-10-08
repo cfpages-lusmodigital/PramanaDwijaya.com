@@ -4,21 +4,29 @@ const { ROOT } = require('./paths');
 const { escapeHtml } = require('./utils');
 
 const SCRIPT_TAG = '<script src="/admin/publish-schedule.js" defer></script>';
+const STYLE_TAG = '<style id="pb-schedule-css">[data-pb-publish]:not([data-pb-live]){display:none!important}</style>';
 
 function publishAttr(article) {
   if (!article?.publishedAt) return '';
   return ` data-pb-publish="${escapeHtml(article.publishedAt)}"`;
 }
 
+function ensureStyle(html) {
+  if (html.includes('id="pb-schedule-css"')) return html;
+  if (html.includes('</head>')) return html.replace('</head>', `${STYLE_TAG}\n</head>`);
+  return `${STYLE_TAG}\n${html}`;
+}
+
 async function ensureScheduleScript(filePath) {
   let html = await fs.readFile(filePath, 'utf8');
-  if (html.includes('/admin/publish-schedule.js')) return;
-  if (html.includes('</body>')) {
-    html = html.replace('</body>', `${SCRIPT_TAG}\n</body>`);
-  } else {
-    html += `\n${SCRIPT_TAG}\n`;
+  const hadScript = html.includes('/admin/publish-schedule.js');
+  const hadStyle = html.includes('id="pb-schedule-css"');
+  if (!hadStyle) html = ensureStyle(html);
+  if (!hadScript) {
+    if (html.includes('</body>')) html = html.replace('</body>', `${SCRIPT_TAG}\n</body>`);
+    else html += `\n${SCRIPT_TAG}\n`;
   }
-  await fs.writeFile(filePath, html, 'utf8');
+  if (!hadScript || !hadStyle) await fs.writeFile(filePath, html, 'utf8');
 }
 
 async function ensureArticleSchedule(slug, publishedAt) {

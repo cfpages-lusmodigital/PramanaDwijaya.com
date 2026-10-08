@@ -14,9 +14,8 @@
 
   function applyCards() {
     document.querySelectorAll('[data-pb-publish]').forEach((node) => {
-      const show = isDue(node.getAttribute('data-pb-publish'));
-      node.hidden = !show;
-      node.style.display = show ? '' : 'none';
+      if (isDue(node.getAttribute('data-pb-publish'))) node.setAttribute('data-pb-live', '');
+      else node.removeAttribute('data-pb-live');
     });
   }
 
