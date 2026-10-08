@@ -1,16 +1,16 @@
 {
   "articles": [
     {
-      "id": "4f68e572-96a7-4533-b18d-8f91e0479805",
-      "slug": "test-schedule",
-      "title": "Test schedule",
-      "excerpt": "Artikel uji jadwal. Seharusnya baru tampil pada 8 Oct 2026 pukul 23.20 WIB.",
-      "content": "<p>Artikel uji jadwal. Seharusnya baru tampil pada 8 Oct 2026 pukul 23.50 WIB.</p>",
+      "id": "868eb6bd-9ae3-42dc-b40e-8ad42fc5f973",
+      "slug": "test-schedule-0005",
+      "title": "Test schedule 0005",
+      "excerpt": "Artikel uji jadwal. Tampil otomatis 9 Okt 2026 pukul 00.05 WIB.",
+      "content": "<p>Artikel uji jadwal. Tampil otomatis 9 Okt 2026 pukul 00.05 WIB.</p>",
       "featuredImage": "",
       "category": "blog",
       "author": "admin",
-      "publishedAt": "2026-10-08T16:50:00.000Z",
-      "updatedAt": "2026-10-08T16:45:07.206Z",
+      "publishedAt": "2026-10-08T17:05:00.000Z",
+      "updatedAt": "2026-10-08T17:00:27.737Z",
       "managed": true,
       "source": "admin"
     },
