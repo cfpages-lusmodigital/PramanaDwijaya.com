@@ -763,7 +763,6 @@ loginForm.addEventListener('submit', async (event) => {
   }
 });
 
-document.getElementById('logout-btn').addEventListener('click', () => showLogin());
 document.querySelectorAll('.nav-item[data-view]').forEach((button) => {
   button.addEventListener('click', (event) => {
     event.preventDefault();
@@ -1072,12 +1071,8 @@ productTableBody?.addEventListener('click', async (event) => {
 }
 
 async function bootstrap() {
-  const saved = sessionStorage.getItem('pb-admin-auth');
-  if (!saved) return;
-  state.credentials = saved;
+  showApp();
   try {
-    await api('/api/articles');
-    showApp();
     await loadArticles();
     if (PB_SITE.productArticles) {
       try {
@@ -1087,8 +1082,8 @@ async function bootstrap() {
       }
     }
     setView('dashboard');
-  } catch {
-    showLogin();
+  } catch (error) {
+    showAlert(error.message, 'error');
   }
 }
 bootstrap();

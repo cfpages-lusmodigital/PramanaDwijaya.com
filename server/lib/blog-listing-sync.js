@@ -2,6 +2,7 @@ const fs = require('fs/promises');
 const { LISTING_PAGE_FILE, site } = require('./paths');
 const { escapeHtml } = require('./utils');
 const { publishAttr, ensureScheduleScript, ensureArticleSchedule } = require('./static-schedule');
+const { isPublished } = require('./publish');
 
 const START_MARKER = '<!-- PB_ADMIN_ARTICLES_START -->';
 const END_MARKER = '<!-- PB_ADMIN_ARTICLES_END -->';
@@ -77,7 +78,9 @@ function ensureInjectScript(html) {
 }
 
 async function syncBlogListingPage(articles) {
-  const adminArticles = (Array.isArray(articles) ? articles : []).filter(isAdminArticle);
+  const adminArticles = (Array.isArray(articles) ? articles : []).filter(
+    (article) => isAdminArticle(article) && isPublished(article)
+  );
   const inner = adminArticles.map((article) => generateBlogListItem(article)).join('\n');
 
   let html;

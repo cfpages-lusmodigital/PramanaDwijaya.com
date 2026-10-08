@@ -1,30 +1,16 @@
 {
   "articles": [
     {
-      "id": "47fd9949-6bb2-43bf-801b-5f6eb8869a78",
-      "slug": "test-schedule-1030",
-      "title": "Test Schedule Artikel",
-      "excerpt": "Artikel uji jadwal untuk pukul 10.30 WIB.",
-      "content": "<p>Artikel uji jadwal. Seharusnya baru tampil pada 30 September 2026 pukul 10.30 WIB.</p>",
-      "featuredImage": "/wp-content/uploads/2026/09/dummy-deposito-munh6wkc.jpg",
+      "id": "4f68e572-96a7-4533-b18d-8f91e0479805",
+      "slug": "test-schedule",
+      "title": "Test schedule",
+      "excerpt": "Artikel uji jadwal. Seharusnya baru tampil pada 8 Oct 2026 pukul 23.20 WIB.",
+      "content": "<p>Artikel uji jadwal. Seharusnya baru tampil pada 8 Oct 2026 pukul 23.25 WIB.</p>",
+      "featuredImage": "",
       "category": "blog",
       "author": "admin",
-      "publishedAt": "2026-09-30T03:30:00.000Z",
-      "updatedAt": "2026-09-30T02:34:33.389Z",
-      "managed": true,
-      "source": "admin"
-    },
-    {
-      "id": "a370bf4e-761a-4dc9-90c8-5f2e8347c4a1",
-      "slug": "test-artikel",
-      "title": "Test Artikel",
-      "excerpt": "What is Lorem Ipsum? Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since 1966, when designers at Letraset and James Mosley, the l…",
-      "content": "<h2><span style=\"background-color: rgb(255, 255, 255); color: rgb(0, 0, 0);\">What is Lorem Ipsum?</span></h2><p class=\"ql-align-justify\"><strong style=\"background-color: rgb(255, 255, 255); color: rgb(0, 0, 0);\">Lorem Ipsum</strong><span style=\"background-color: rgb(255, 255, 255); color: rgb(0, 0, 0);\"> is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since 1966, when designers at Letraset and James Mosley, the librarian at St Bride Printing Library in London, took a 1914 Cicero translation and scrambled it to make dummy text for Letraset's Body Type sheets. It has survived not only many decades, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised thanks to these sheets and more recently with desktop publishing software like Aldus PageMaker and Microsoft Word including versions of Lorem Ipsum.</span></p><p><br></p>",
-      "featuredImage": "/wp-content/uploads/2026/09/dummy-office-muil22bi.jpg",
-      "category": "blog",
-      "author": "admin",
-      "publishedAt": "2026-09-26T16:03:00.000Z",
-      "updatedAt": "2026-09-26T16:09:47.060Z",
+      "publishedAt": "2026-10-08T16:25:00.000Z",
+      "updatedAt": "2026-10-08T16:19:04.455Z",
       "managed": true,
       "source": "admin"
     },

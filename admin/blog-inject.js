@@ -35,7 +35,11 @@
     const response = await fetch('/api/public/articles');
     if (!response.ok) return;
     const data = await response.json();
-    const articles = data.articles || [];
+    const articles = (data.articles || []).filter((article) => {
+      if (!article.publishedAt) return true;
+      const when = new Date(article.publishedAt).getTime();
+      return Number.isNaN(when) || when <= Date.now();
+    });
 
     container.querySelectorAll('[data-pb-admin="true"]').forEach((node) => node.remove());
 

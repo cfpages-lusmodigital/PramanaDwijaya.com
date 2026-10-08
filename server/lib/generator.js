@@ -2,6 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const { TEMPLATES_DIR, site } = require('./paths');
 const { escapeHtml, formatDate } = require('./utils');
+const { filterPublished } = require('./publish');
 
 function loadTemplate(name) {
   return fs.readFileSync(path.join(TEMPLATES_DIR, name), 'utf8');
@@ -44,7 +45,8 @@ function generateArticleHtml(article) {
 
 function generateListingHtml(articles) {
   const template = loadTemplate('listing.html');
-  const cards = articles
+  const visible = filterPublished(articles);
+  const cards = visible
     .map((article) => {
       const href = `/${article.slug}.html`;
       const image = article.featuredImage
@@ -64,12 +66,12 @@ function generateListingHtml(articles) {
     .join('\n');
 
   const emptyState =
-    articles.length === 0
+    visible.length === 0
       ? '<p class="managed-empty">Belum ada artikel yang dikelola via admin.</p>'
       : '';
 
   return renderTemplate(template, {
-    articleCount: String(articles.length),
+    articleCount: String(visible.length),
     articleCards: cards || emptyState,
     generatedAt: escapeHtml(formatDate(new Date())),
   });
