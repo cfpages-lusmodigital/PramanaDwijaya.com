@@ -1,34 +1,6 @@
 {
   "articles": [
     {
-      "id": "1cc74c0d-d941-4e39-bd49-3004f28877c3",
-      "slug": "test-schedule-0011",
-      "title": "Test schedule 0011",
-      "excerpt": "Artikel uji jadwal. Tampil otomatis 9 Okt 2026 pukul 00.11 WIB.",
-      "content": "<p>Artikel uji jadwal. Tampil otomatis 9 Okt 2026 pukul 00.11 WIB.</p>",
-      "featuredImage": "",
-      "category": "blog",
-      "author": "admin",
-      "publishedAt": "2026-10-08T17:11:00.000Z",
-      "updatedAt": "2026-10-08T17:08:46.362Z",
-      "managed": true,
-      "source": "admin"
-    },
-    {
-      "id": "868eb6bd-9ae3-42dc-b40e-8ad42fc5f973",
-      "slug": "test-schedule-0005",
-      "title": "Test schedule 0005",
-      "excerpt": "Artikel uji jadwal. Tampil otomatis 9 Okt 2026 pukul 00.05 WIB.",
-      "content": "<p>Artikel uji jadwal. Tampil otomatis 9 Okt 2026 pukul 00.05 WIB.</p>",
-      "featuredImage": "",
-      "category": "blog",
-      "author": "admin",
-      "publishedAt": "2026-10-08T17:05:00.000Z",
-      "updatedAt": "2026-10-08T17:00:27.737Z",
-      "managed": true,
-      "source": "admin"
-    },
-    {
       "id": "import-2018/05/21/pabrik-bondek-alas-cor-di-sidoarjo-%e2%98%8e-0813-3535-2009",
       "slug": "pabrik-bondek-alas-cor-di-sidoarjo-0813-3535-2009",
       "title": "Pabrik Bondek alas Cor di Sidoarjo ☎ 0813-3535-2009",
