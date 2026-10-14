@@ -296,10 +296,18 @@ th {
 
 #quill-editor {
   background: #fff; border: 1px solid var(--line); border-radius: 16px;
-  min-height: 420px; overflow: hidden;
+  min-height: 420px; overflow: visible;
 }
-.ql-toolbar.ql-snow { border: 0; border-bottom: 1px solid var(--line); background: #fafbfa; }
-.ql-container.ql-snow { border: 0; font-family: Inter, sans-serif; font-size: 15px; }
+.ql-toolbar.ql-snow {
+  position: sticky;
+  top: 78px;
+  z-index: 15;
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  border-radius: 16px 16px 0 0;
+  background: #fafbfa;
+}
+.ql-container.ql-snow { border: 0; font-family: Inter, sans-serif; font-size: 15px; overflow: hidden; border-radius: 0 0 16px 16px; }
 .ql-editor { min-height: 340px; line-height: 1.7; }
 .ql-editor .ql-youtube-embed { margin: 1.2em auto; max-width: 100%; }
 .ql-editor .wp-block-embed__wrapper {

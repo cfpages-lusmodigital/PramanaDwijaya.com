@@ -12,6 +12,7 @@ const {
   patchArticleHtml,
 } = require('./html-article');
 const { notifyPublishScheduleChanged } = require('./schedule');
+const { syncProductListings } = require('./product-listing-sync');
 
 function buildCategoryCounts(articles) {
   const counts = {};
@@ -160,6 +161,7 @@ async function updateProductArticle(slug, input) {
     item.slug === slug ? { ...item, ...patchFields } : item
   ));
   await writeProductIndex(index);
+  await syncProductListings(index.articles);
   await notifyPublishScheduleChanged();
 
   return {
@@ -231,6 +233,7 @@ async function createProductArticle(input) {
   };
   index.articles.push(record);
   await writeProductIndex(index);
+  await syncProductListings(index.articles);
   await notifyPublishScheduleChanged();
 
   return {
@@ -257,6 +260,7 @@ async function deleteProductArticle(slug) {
 
   index.articles = index.articles.filter((item) => item.slug !== slug);
   await writeProductIndex(index);
+  await syncProductListings(index.articles);
   await notifyPublishScheduleChanged();
 
   return { slug, removed: matches.length };

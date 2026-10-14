@@ -3,5 +3,5 @@ window.PB_ADMIN_SITE = {
   listingPublicPath: '/blog/',
   managedPublicPath: '/blog/managed/',
   defaultCategory: 'blog',
-  productArticles: false,
+  productArticles: true,
 };

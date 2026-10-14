@@ -6,6 +6,7 @@ const { writeProductIndex, readProductIndex } = require('./product-store');
 const { extractTitle, extractFeaturedImage } = require('./html-article');
 const { toIsoDate } = require('./utils');
 const { notifyPublishScheduleChanged } = require('./schedule');
+const { syncProductListings } = require('./product-listing-sync');
 
 function extractArticlesFromListing(html) {
   const seen = new Set();
@@ -154,6 +155,7 @@ async function importProductArticles() {
   const uniqueSlugs = new Set(articles.map((item) => item.slug)).size;
   const now = toIsoDate();
   await writeProductIndex({ lastSyncedAt: now, articles });
+  await syncProductListings(articles);
   await notifyPublishScheduleChanged();
 
   return {

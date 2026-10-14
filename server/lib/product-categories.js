@@ -1,82 +1,95 @@
+/** Kategori sesuai menu Produk di pramanadwijaya.com */
 const PRODUCT_GROUPS = [
   {
-    id: 'atap-baja-ringan',
-    label: 'Atap Baja Ringan',
+    id: 'atap',
+    label: 'Atap',
     categories: [
-      { id: 'atap-galvalum', label: 'Atap Genteng Metal', listingDir: 'atap-galvalum', slugPrefix: 'jual-atap-galvalum-' },
-      { id: 'atap-lengkung', label: 'Atap Lengkung', listingDir: 'atap-lengkung', slugPrefix: 'jual-atap-lengkung-' },
-      { id: 'atap-genteng', label: 'Atap Pasir', listingDir: 'atap-genteng', slugPrefix: 'jual-atap-pasir-' },
-      { id: 'atap-seng', label: 'Atap Seng Galvanis', listingDir: 'atap-seng', slugPrefix: 'jual-atap-seng-' },
-      { id: 'atap-spandek', label: 'Atap Spandek', listingDir: 'atap-spandek', slugPrefix: 'jual-atap-spandek-' },
-      { id: 'canal-c', label: 'Canal C Galvalum', listingDir: 'canal-c', slugPrefix: 'jual-canal-c-' },
-      { id: 'hollow-galvalum', label: 'Hollow Galvalum', listingDir: 'hollow-galvalum', slugPrefix: 'jual-hollow-galvalum-' },
-      { id: 'reng-galvalum', label: 'Reng Galvalum', listingDir: 'reng-galvalum', slugPrefix: 'jual-reng-galvalum-' },
-      { id: 'bondek', label: 'Plat Bondek', listingDir: 'bondek', slugPrefix: 'jual-bondek-' },
-    ],
-  },
-  {
-    id: 'pagar-kawat',
-    label: 'Pagar dan Kawat',
-    categories: [
-      { id: 'pagar-brc', label: 'Pagar BRC', listingDir: 'pagar-brc', slugPrefix: 'jual-pagar-brc-' },
-      { id: 'kawat-harmonika', label: 'Kawat Harmonika', listingDir: 'kawat-harmonika', slugPrefix: 'jual-kawat-harmonika-' },
-      { id: 'weldedmesh', label: 'Weldedmesh', listingDir: 'weldedmesh', slugPrefix: 'jual-weldedmesh-' },
-      { id: 'bronjong', label: 'Kawat Bronjong', listingDir: 'bronjong', slugPrefix: 'jual-bronjong-' },
-      { id: 'kawat-loket-ulir', label: 'Kawat Loket Ulir', listingDir: 'kawat-loket-ulir' },
-      { id: 'expanded-metal', label: 'Expanded Metal', listingDir: 'expanded-metal', slugPrefix: 'jual-expanded-metal-' },
-      { id: 'kawat-duri', label: 'Kawat Duri', listingDir: 'kawat-duri', slugPrefix: 'jual-kawat-duri-' },
-      { id: 'kawat-loket', label: 'Kawat Loket', listingDir: 'kawat-loket', slugPrefix: 'jual-kawat-loket-' },
+      { id: 'galvalum-aksesoris', label: 'Atap Galvalum / Aksesoris', listingDir: 'produk/atap/galvalum-aksesoris' },
+      { id: 'atap-lengkung', label: 'Atap Lengkung', listingDir: 'produk/atap/lengkung' },
+      { id: 'bondek-floor-deck', label: 'Bondek (Floordeck)', listingDir: 'produk/atap/bondek-floor-deck' },
+      { id: 'genteng-metal', label: 'Genteng Metal', listingDir: 'produk/atap/genteng-metal' },
+      { id: 'hollow-galvalum', label: 'Hollow Galvalum', listingDir: 'produk/atap/hollow-galvalum' },
+      { id: 'seng-gelombang', label: 'Seng Gelombang', listingDir: 'produk/atap/seng-gelombang-2' },
+      { id: 'plat-galvalum-seng-roll', label: 'Plat Galvalum & Seng Roll', listingDir: 'produk/atap/plat-galvalum-seng-roll' },
+      { id: 'truss-canal-c-reng', label: 'Truss (Canal C & Reng Galvalum)', listingDir: 'produk/atap/truss-canal-c-reng-galvalum' },
     ],
   },
   {
     id: 'besi-baja',
-    label: 'Besi dan Baja',
+    label: 'Besi & Baja',
     categories: [
-      { id: 'besi-wf', label: 'Besi WF', listingDir: 'besi-wf', slugPrefix: 'jual-besi-wf-' },
-      { id: 'besi-cnp', label: 'Besi CNP', listingDir: 'besi-cnp', slugPrefix: 'jual-besi-cnp-' },
-      { id: 'besi-unp', label: 'Besi UNP', listingDir: 'besi-unp', slugPrefix: 'jual-besi-unp-' },
-      { id: 'besi-h-beam', label: 'Besi H-Beam', listingDir: 'besi-h-beam', slugPrefix: 'jual-besi-h-beam-' },
-      { id: 'besi-inp', label: 'Besi INP / I-Beam', listingDir: 'besi-inp', slugPrefix: 'jual-besi-inp-' },
-      { id: 'besi-siku', label: 'Besi Siku', listingDir: 'besi-siku', slugPrefix: 'jual-besi-siku-' },
-      { id: 'besi-nako', label: 'Besi Nako', listingDir: 'besi-nako', slugPrefix: 'jual-besi-nako-' },
+      { id: 'wide-flange', label: 'Besi WF (Wide Flange)', listingDir: 'produk/baja/wide-flange' },
+      { id: 'besi-hollow', label: 'Besi Hollow', listingDir: 'produk/baja/hollow' },
+      { id: 'unp-cnp', label: 'Besi UNP / CNP', listingDir: 'produk/baja/unp-cnp' },
+      { id: 'besi-siku', label: 'Besi Siku', listingDir: 'produk/baja/besi-siku' },
+      { id: 'h-beam', label: 'H-Beam', listingDir: 'produk/baja/h-beam' },
     ],
   },
   {
     id: 'besi-beton',
-    label: 'Besi Beton Batangan',
+    label: 'Besi Beton',
     categories: [
-      { id: 'besi-bjtp', label: 'Besi BjTP dan BjTS', listingDir: 'besi-bjtp', slugPrefix: 'jual-besi-bjtp-' },
-      { id: 'wiremesh', label: 'Wiremesh', listingDir: 'wiremesh', slugPrefix: 'jual-wiremesh-' },
+      { id: 'bjtp-bjts', label: 'BjTP dan BjTS', listingDir: 'produk/besi-beton/bjtp-bjts' },
+      { id: 'virkan', label: 'Besi Beton Virkan', listingDir: 'produk/besi-beton/virkan' },
+      { id: 'begel-kolom', label: 'Besi Beton Begel & Kolom', listingDir: 'produk/besi-beton/begel-kolom' },
+      { id: 'wire-rod', label: 'Wire Rod', listingDir: 'produk/besi-beton/wire-rod' },
     ],
   },
   {
     id: 'plat',
     label: 'Plat',
     categories: [
-      { id: 'plat-lubang', label: 'Plat Lubang', listingDir: 'plat-lubang', slugPrefix: 'jual-plat-lubang-' },
-      { id: 'plat-strip', label: 'Plat Strip', listingDir: 'plat-strip', slugPrefix: 'jual-plat-strip-' },
-      { id: 'plat-besi', label: 'Plat Besi', listingDir: 'plat-besi', slugPrefix: 'jual-plat-besi-' },
-      { id: 'plat-bordes', label: 'Plat Bordes', listingDir: 'plat-bordes', slugPrefix: 'jual-plat-bordes-' },
-      { id: 'plat-hitam', label: 'Plat Hitam', listingDir: 'plat-hitam', slugPrefix: 'jual-plat-hitam-' },
-      { id: 'plat-kapal', label: 'Plat Kapal', listingDir: 'plat-kapal', slugPrefix: 'jual-plat-kapal-' },
+      { id: 'plat-bordes', label: 'Plat Bordes', listingDir: 'produk/plat/bordes' },
+      { id: 'plat-hitam', label: 'Plat Hitam', listingDir: 'produk/plat/hitam' },
+      { id: 'plat-kapal', label: 'Plat Kapal', listingDir: 'produk/plat/kapal' },
+      { id: 'plat-strip', label: 'Plat Strip', listingDir: 'produk/plat/strip' },
     ],
   },
   {
-    id: 'hollow-pipa',
-    label: 'Hollow dan Pipa',
+    id: 'pipa',
+    label: 'Pipa',
     categories: [
-      { id: 'hollow-galvanis', label: 'Hollow Galvanis', listingDir: 'hollow-galvanis', slugPrefix: 'jual-hollow-galvanis-' },
-      { id: 'hollow-hitam', label: 'Hollow Hitam', listingDir: 'hollow-hitam', slugPrefix: 'jual-hollow-hitam-' },
-      { id: 'pipa-galvanis', label: 'Pipa Galvanis', listingDir: 'pipa-galvanis', slugPrefix: 'jual-pipa-galvanis-' },
-      { id: 'pipa-hitam', label: 'Pipa Hitam', listingDir: 'pipa-hitam', slugPrefix: 'jual-pipa-hitam-' },
+      { id: 'pipa-galvanis', label: 'Pipa Galvanis', listingDir: 'produk/pipa/galvanis-spindo' },
+      { id: 'tiang-pancang', label: 'Pipa Tiang Pancang', listingDir: 'produk/pipa/tiang-pancang' },
+      { id: 'pipa-hitam', label: 'Pipa Hitam', listingDir: 'produk/pipa/besi-hitam' },
     ],
   },
   {
     id: 'steel-grating',
     label: 'Steel Grating',
     categories: [
-      { id: 'plain-grating', label: 'Plain Steel Grating', listingDir: 'plain-grating', slugPrefix: 'jual-plain-grating-' },
-      { id: 'serrated-grating', label: 'Serrated Steel Grating', listingDir: 'serrated-grating', slugPrefix: 'jual-serrated-grating-' },
+      { id: 'grating-lantai', label: 'Steel Grating Lantai', listingDir: 'steel-grating-lantai' },
+      { id: 'grating-anak-tangga', label: 'Steel Grating Anak Tangga', listingDir: 'steel-grating-anak-tangga' },
+      { id: 'grating-drainase', label: 'Steel Grating Drainase', listingDir: 'steel-grating-drainase' },
+      { id: 'plain-grating', label: 'Plain Steel Grating', listingDir: 'plain-steel-grating' },
+      { id: 'serrated-grating', label: 'Serrated Steel Grating', listingDir: 'serrated-steel-grating' },
+      { id: 'custom-grating', label: 'Custom Steel Grating', listingDir: 'custom-steel-grating' },
+    ],
+  },
+  {
+    id: 'wire-mesh',
+    label: 'Wire Mesh',
+    categories: [
+      { id: 'bendrat', label: 'Bendrat', listingDir: 'produk/wire-mesh/bendrat' },
+      { id: 'bronjong', label: 'Bronjong / Gabion', listingDir: 'produk/wire-mesh/kawat-bronjong-gabion' },
+      { id: 'kawat-harmonika', label: 'Kawat Harmonika', listingDir: 'produk/wire-mesh/kawat-harmonika' },
+      { id: 'pagar-brc', label: 'Pagar BRC & Aksesoris', listingDir: 'produk/wire-mesh/pagar-brc-aksesoris' },
+      { id: 'kawat-duri', label: 'Kawat Duri', listingDir: 'produk/wire-mesh/kawat-duri' },
+      { id: 'mesh-stainless', label: 'Mesh Stainless', listingDir: 'produk/wire-mesh/stainless' },
+      { id: 'kawat-loket', label: 'Kawat Loket', listingDir: 'produk/wire-mesh/kawat-loket' },
+    ],
+  },
+  {
+    id: 'stainless-steel',
+    label: 'Stainless Steel',
+    categories: [
+      { id: 'ss-sheet', label: 'Lembaran', listingDir: 'produk/stainless-steel/sheet' },
+      { id: 'ss-roll', label: 'Roll', listingDir: 'produk/stainless-steel/roll' },
+      { id: 'ss-polish', label: 'Plat Polish', listingDir: 'produk/stainless-steel/plat-polish' },
+      { id: 'ss-perforated', label: 'Plat Perforated', listingDir: 'produk/stainless-steel/plat-perforated' },
+      { id: 'ss-bordes', label: 'Plat Bordes', listingDir: 'produk/stainless-steel/plat-bordes' },
+      { id: 'ss-pipa-hollow', label: 'Pipa Kotak', listingDir: 'produk/stainless-steel/pipa-hollow' },
+      { id: 'ss-pipa-bulat', label: 'Pipa Bulat', listingDir: 'produk/stainless-steel/pipa-bulat' },
     ],
   },
 ];
@@ -86,8 +99,9 @@ const CATEGORY_BY_LISTING = new Map();
 
 for (const group of PRODUCT_GROUPS) {
   for (const category of group.categories) {
-    CATEGORY_BY_ID.set(category.id, { ...category, groupId: group.id, groupLabel: group.label });
-    CATEGORY_BY_LISTING.set(category.listingDir, { ...category, groupId: group.id, groupLabel: group.label });
+    const record = { ...category, groupId: group.id, groupLabel: group.label };
+    CATEGORY_BY_ID.set(category.id, record);
+    CATEGORY_BY_LISTING.set(category.listingDir, record);
   }
 }
 
@@ -103,14 +117,8 @@ function getAllCategories() {
   return [...CATEGORY_BY_ID.values()];
 }
 
-const SLUG_MATCHERS = getAllCategories()
-  .filter((category) => category.slugPrefix)
-  .map((category) => ({ prefix: category.slugPrefix, category }))
-  .sort((a, b) => b.prefix.length - a.prefix.length);
-
-function resolveCategoryFromSlug(slug) {
-  const match = SLUG_MATCHERS.find((item) => slug.startsWith(item.prefix));
-  return match ? match.category : null;
+function resolveCategoryFromSlug() {
+  return null;
 }
 
 module.exports = {

@@ -2,7 +2,7 @@
 module.exports = {
   siteId: 'pramanadwijaya.com',
   siteLabel: 'Pramana Dwijaya',
-  adminTitle: 'PRAMANA Studio · Dwijaya',
+  adminTitle: 'Pramana Dwi Jaya',
   listingSegment: 'blog',
   listingPublicPath: '/blog/',
   managedPublicPath: '/blog/managed/',
@@ -10,7 +10,7 @@ module.exports = {
   defaultFeaturedImage: '/wp-content/uploads/2016/05/atap-baja-ringan.jpg',
   features: {
     educationArticles: true,
-    productArticles: false,
+    productArticles: true,
   },
   injectScript: '/admin/blog-inject.js',
 };

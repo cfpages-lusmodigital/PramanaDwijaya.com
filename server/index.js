@@ -13,6 +13,16 @@ const {
 const { createAuthMiddleware } = require('./lib/auth');
 const { saveUploadedImage } = require('./lib/upload');
 const { importLegacyArticles } = require('./lib/import-legacy');
+const { importProductArticles } = require('./lib/import-product');
+const {
+  listProductArticles,
+  getProductArticle,
+  createProductArticle,
+  updateProductArticle,
+  deleteProductArticle,
+} = require('./lib/product-articles');
+const { readProductIndex } = require('./lib/product-store');
+const { syncProductListings } = require('./lib/product-listing-sync');
 const { ROOT, ADMIN_DIR, site } = require('./lib/paths');
 const {
   initScheduleWatcher,
@@ -116,6 +126,80 @@ app.post('/api/rebuild-listing', auth, async (_req, res) => {
   }
 });
 
+app.get('/api/product-categories', auth, async (_req, res) => {
+  try {
+    const data = await listProductArticles({ limit: 1, page: 1 });
+    res.json({ groups: data.groups, total: data.total, lastSyncedAt: data.lastSyncedAt });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+app.get('/api/product-articles', auth, async (req, res) => {
+  try {
+    const data = await listProductArticles({
+      categoryId: req.query.category,
+      groupId: req.query.group,
+      q: req.query.q,
+      page: req.query.page,
+      limit: req.query.limit,
+    });
+    res.json(data);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+app.get('/api/product-articles/:slug', auth, async (req, res) => {
+  try {
+    const article = await getProductArticle(req.params.slug);
+    if (!article) {
+      return res.status(404).json({ error: 'Artikel produk tidak ditemukan.' });
+    }
+    return res.json({ article });
+  } catch (error) {
+    return res.status(500).json({ error: error.message });
+  }
+});
+
+app.post('/api/product-articles', auth, async (req, res) => {
+  try {
+    const article = await createProductArticle(req.body);
+    res.status(201).json({ article });
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+});
+
+app.put('/api/product-articles/:slug', auth, async (req, res) => {
+  try {
+    const article = await updateProductArticle(req.params.slug, req.body);
+    res.json({ article });
+  } catch (error) {
+    const status = /tidak ditemukan/i.test(error.message) ? 404 : 400;
+    res.status(status).json({ error: error.message });
+  }
+});
+
+app.delete('/api/product-articles/:slug', auth, async (req, res) => {
+  try {
+    const result = await deleteProductArticle(req.params.slug);
+    res.json(result);
+  } catch (error) {
+    const status = /tidak ditemukan/i.test(error.message) ? 404 : 400;
+    res.status(status).json({ error: error.message });
+  }
+});
+
+app.post('/api/import-product', auth, async (_req, res) => {
+  try {
+    const result = await importProductArticles();
+    res.json(result);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
 app.post('/api/import-legacy', auth, async (_req, res) => {
   try {
     const result = await importLegacyArticles();
@@ -156,6 +240,15 @@ async function start() {
     await initScheduleWatcher();
   } catch (error) {
     console.warn('Listing admin belum tersedia:', error.message);
+  }
+
+  if (site.features.productArticles) {
+    try {
+      const { articles } = await readProductIndex();
+      await syncProductListings(articles);
+    } catch (error) {
+      console.warn('Listing artikel produk belum tersedia:', error.message);
+    }
   }
 
   try {

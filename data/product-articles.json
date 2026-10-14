@@ -1,0 +1,19 @@
+{
+  "lastSyncedAt": null,
+  "articles": [
+    {
+      "slug": "test-artikel-atap-galvalum",
+      "title": "Test Artikel Atap Galvalum",
+      "excerpt": "lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et",
+      "featuredImage": "",
+      "categoryId": "galvalum-aksesoris",
+      "categoryLabel": "Atap Galvalum / Aksesoris",
+      "groupId": "atap",
+      "groupLabel": "Atap",
+      "listingPath": "/produk/atap/galvalum-aksesoris/",
+      "source": "admin",
+      "updatedAt": "2026-10-14T03:30:16.091Z",
+      "publishedAt": "2026-10-14T03:29:00.000Z"
+    }
+  ]
+}
